@@ -9,8 +9,9 @@ class RestaurantServiceTest {
 
     RestaurantService service = new RestaurantService();
     Restaurant restaurant;
+
     //REFACTOR ALL THE REPEATED LINES OF CODE
-    private void MockRestaurant(){
+    private void MockRestaurant() {
 
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
@@ -26,7 +27,7 @@ class RestaurantServiceTest {
     public void searching_for_existing_restaurant_should_return_expected_restaurant_object() throws restaurantNotFoundException {
         //WRITE UNIT TEST CASE HERE
         MockRestaurant();
-        assertEquals(restaurant.getName(),service.findRestaurantByName("Amelie's cafe").getName());
+        assertEquals(restaurant.getName(), service.findRestaurantByName("Amelie's cafe").getName());
     }
 
     //You may watch the video by Muthukumaran on how to write exceptions in Course 3: Testing and Version control: Optional content
@@ -34,7 +35,7 @@ class RestaurantServiceTest {
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
         //WRITE UNIT TEST CASE HERE
         MockRestaurant();
-        assertThrows(restaurantNotFoundException.class,()->service.findRestaurantByName("Amelie's cafae"));
+        assertThrows(restaurantNotFoundException.class, () -> service.findRestaurantByName("Amelie's cafae"));
     }
     //<<<<<<<<<<<<<<<<<<<<SEARCHING>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -45,21 +46,21 @@ class RestaurantServiceTest {
         MockRestaurant();
         int initialNumberOfRestaurants = service.getRestaurants().size();
         service.removeRestaurant("Amelie's cafe");
-        assertEquals(initialNumberOfRestaurants-1, service.getRestaurants().size());
+        assertEquals(initialNumberOfRestaurants - 1, service.getRestaurants().size());
     }
 
     @Test
     public void removing_restaurant_that_does_not_exist_should_throw_exception() throws restaurantNotFoundException {
         MockRestaurant();
-        assertThrows(restaurantNotFoundException.class,()->service.removeRestaurant("Pantry d'or"));
+        assertThrows(restaurantNotFoundException.class, () -> service.removeRestaurant("Pantry d'or"));
     }
 
     @Test
-    public void add_restaurant_should_increase_list_of_restaurants_size_by_1(){
+    public void add_restaurant_should_increase_list_of_restaurants_size_by_1() {
         MockRestaurant();
         int initialNumberOfRestaurants = service.getRestaurants().size();
-        service.addRestaurant("Pumpkin Tales","Chennai",LocalTime.parse("12:00:00"),LocalTime.parse("23:00:00"));
-        assertEquals(initialNumberOfRestaurants + 1,service.getRestaurants().size());
+        service.addRestaurant("Pumpkin Tales", "Chennai", LocalTime.parse("12:00:00"), LocalTime.parse("23:00:00"));
+        assertEquals(initialNumberOfRestaurants + 1, service.getRestaurants().size());
     }
-    //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
+//<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
