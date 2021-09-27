@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
@@ -13,7 +13,7 @@ class RestaurantTest {
     Restaurant restaurant;
     private void MockRestaurant() {
         LocalTime now = LocalTime.now();
-        LocalTime openingTime = LocalTime.parse("10:00:00");
+        LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
         restaurant = service.addRestaurant("Amelie's cafe", "Chennai", openingTime, closingTime);
         restaurant.addToMenu("Sweet corn soup", 119);
@@ -29,8 +29,7 @@ class RestaurantTest {
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
         //WRITE UNIT TEST CASE
-        MockRestaurant();
-        restaurant.setCurrentTime(LocalTime.parse("20:00:00"));
+
         assertTrue(restaurant.isRestaurantOpen());
     }
 
@@ -38,7 +37,6 @@ class RestaurantTest {
     public void is_restaurant_open_should_return_false_if_time_is_outside_opening_and_closing_time(){
         //WRITE UNIT TEST CASE HERE
         MockRestaurant();
-        restaurant.setCurrentTime(LocalTime.parse("23:00:00"));
         assertFalse(restaurant.isRestaurantOpen());
     }
 
